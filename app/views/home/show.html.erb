@@ -1,0 +1,22 @@
+<div class="row py-5">
+  <!-- Resto del código... -->
+  <% if current_user && current_user.role == User.roles.key(2).to_s %>
+    <div class="col-12">
+      <%= button_to "Elimina el comentario", comment_path(comment), method: :delete, class: "btn btn-danger w-100" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Comentarios</h5>
+    <% @comments.each do |comment| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <p class="card-text"><%= comment.content %></p>
+          <footer class="blockquote-footer">Autor: <cite title="Source Title"><%= comment.user.email %></cite></footer>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
